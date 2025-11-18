@@ -85,11 +85,10 @@ const Cell: React.FC<Props> = memo(
       if (!cellInfo) {
         return selectable ? selectableBg : unselectableBg;
       }
-      let act_combo_count = 0;
       const act_counts_arr = Object.entries(cellInfo.actions)
         .map((e) => e)
         .sort(
-          ([action1, count1], [action2, count2]) =>
+          ([action1], [action2]) =>
             ACTION_ORDER.indexOf(action1) - ACTION_ORDER.indexOf(action2)
         );
       let last_pct: number = 0;

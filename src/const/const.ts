@@ -7,6 +7,8 @@ export const FOLD = "fold";
 /** Index can be used to sort and order ranks */
 export const ranks = ["A", "K", "Q", "J", "T", 9, 8, 7, 6, 5, 4, 3, 2];
 
+export const suits_str = ["s", "c", "h", "d"];
+
 /** face to value */
 export const f2v: { [face: string | number]: number } = {
   2: 2,

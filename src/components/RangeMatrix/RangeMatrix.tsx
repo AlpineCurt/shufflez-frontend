@@ -7,7 +7,11 @@ import Cell from "./Cell";
 import { f2v, CELL_MAX_WIDTH, ranks } from "../../const/const";
 import { Box } from "@mui/material";
 import { ActionsObj, CellActions } from "../../const/types";
-import { combo2CellLabel } from "../../helper/helpers";
+import {
+  combo2CellLabel,
+  comboArray2Range,
+  range2ComboArray,
+} from "../../helper/range_functions";
 
 interface Props {
   selectableRange?: Set<string>;
@@ -29,6 +33,11 @@ const test_actionsObject: ActionsObj = {
   ],
   fold: ["AsAd", "AsAc", "KsKc"],
 };
+
+const test_range = "KK+, 88-TT, 66, AKs+, A4s-A6s, KQs, 62o-65o, 7h2c";
+const [test_combos] = range2ComboArray(test_range);
+const test_str_res = comboArray2Range(test_combos);
+console.log("stop");
 
 const RangeMatrix: React.FC<Props> = ({ selectableRange }) => {
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
