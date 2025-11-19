@@ -419,23 +419,81 @@ export function comboArray2Range(combo_arr: string[]) {
     {}
   );
 
-  let upper_ptr = 0;
-  let lower_ptr = 0;
-  /** pocket pairs */
-  let upper = ranks[0];
-  let lower: string;
-  for (const rank of ranks) {
-    // LEFT OFF HERE. CAN'T THINK
+  const range_strings: string[] = [];
+  const ind_combos: string[] = [];
+  let upper: string | undefined = undefined;
+  let lower: string | undefined = undefined;
+  let range_top: string = "";
+  const cmb_max = {
+    s: 4,
+    o: 12,
+  };
+
+  function handleUL() {
+    if (upper && lower) {
+      if (upper === range_top) {
+        range_strings.push(`${lower}+`);
+      } else {
+        range_strings.push(`${lower}-${upper}`);
+      }
+    } else if (upper) {
+      range_strings.push(`${upper}`);
+    }
+    upper = undefined;
+    lower = undefined;
   }
 
-  for (const type of ["pp", "s", "o"]) {
-    for (let i = 0; i < ranks.length; i++) {
-      const r1 = ranks[i];
-      for (let j = i + 1; j < ranks.length; j++) {
-        if (type === "pp") {
-        }
+  function checkUL(cmb: string, max: number) {
+    if (sorted_combos[cmb] && sorted_combos[cmb].size === max) {
+      if (!upper) {
+        upper = cmb;
+      } else {
+        lower = cmb;
+      }
+    } else {
+      handleUL();
+      if (sorted_combos[cmb]) {
+        Array.from(sorted_combos[cmb]).forEach((combo) => {
+          ind_combos.push(combo);
+        });
       }
     }
   }
-  console.log("stop");
+
+  // pocket pairs
+  range_top = "AA";
+  for (let i = 0; i < ranks.length; i++) {
+    const rank = ranks[i];
+    const cmb = `${rank}${rank}`;
+    checkUL(cmb, 6);
+  }
+  /** edge case: 22 is upper or lower */
+  handleUL();
+  range_top = "";
+
+  // suited and offsuit
+  for (const [type, max] of Object.entries(cmb_max)) {
+    for (let i = 0; i < ranks.length - 1; i++) {
+      const rank1 = ranks[i];
+      range_top = `${rank1}${ranks[i + 1]}${type}`;
+      for (let j = i + 1; j < ranks.length; j++) {
+        const rank2 = ranks[j];
+        let cmb = `${rank1}${rank2}${type}`;
+        checkUL(cmb, max);
+      }
+      // handle "range_bottom" case
+      handleUL();
+    }
+  }
+
+  let str = "";
+  const all_rng_str = [...range_strings, ...ind_combos];
+  for (let i = 0; i < all_rng_str.length; i++) {
+    const rng_str = all_rng_str[i];
+    if (i > 0) {
+      str += ",";
+    }
+    str += rng_str;
+  }
+  return str;
 }

@@ -34,7 +34,8 @@ const test_actionsObject: ActionsObj = {
   fold: ["AsAd", "AsAc", "KsKc"],
 };
 
-const test_range = "KK+, 88-TT, 66, AKs+, A4s-A6s, KQs, 62o-65o, 7h2c";
+const test_range =
+  "KK+, 88-TT, 66, 22-33, AKs+, A4s-A6s, KQs, 62o-65o, 7h2c, 32s, T8s+, 52s+, 82o-85o";
 const [test_combos] = range2ComboArray(test_range);
 const test_str_res = comboArray2Range(test_combos);
 console.log("stop");
