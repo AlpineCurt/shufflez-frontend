@@ -4,14 +4,10 @@
 
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import Cell from "./Cell";
-import { f2v, CELL_MAX_WIDTH, ranks } from "../../const/const";
+import { CELL_MAX_WIDTH } from "../../const/const";
 import { Box } from "@mui/material";
 import { ActionsObj, CellActions } from "../../const/types";
-import {
-  combo2CellLabel,
-  comboArray2Range,
-  range2ComboArray,
-} from "../../helper/range_functions";
+import { combo2CellLabel, ranks, f2v } from "shufflez-calc";
 
 interface Props {
   selectableRange?: Set<string>;
@@ -33,12 +29,6 @@ const test_actionsObject: ActionsObj = {
   ],
   fold: ["AsAd", "AsAc", "KsKc"],
 };
-
-const test_range =
-  "KK+, 88-TT, 66, 22-33, AKs+, A4s-A6s, KQs, 62o-65o, 7h2c, 32s, T8s+, 52s+, 82o-85o";
-const [test_combos] = range2ComboArray(test_range);
-const test_str_res = comboArray2Range(test_combos);
-console.log("stop");
 
 const RangeMatrix: React.FC<Props> = ({ selectableRange }) => {
   const [isMouseDown, setIsMouseDown] = useState<boolean>(false);
