@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import RangeMatrix from "../components/RangeMatrix/RangeMatrix";
 import RangeText from "../components/RangeText/RangeText";
 import { Grid, Box } from "@mui/material";
+import BoardDisplay from "../components/Board/BoardDisplay";
 
 interface Props {}
 
@@ -18,6 +19,9 @@ const ShufflezPage: React.FC<Props> = () => {
             setRangeTextValue={setRangeTextValue}
           />
         </Box>
+      </Grid>
+      <Grid size={5}>
+        <BoardDisplay />
       </Grid>
     </Grid>
   );

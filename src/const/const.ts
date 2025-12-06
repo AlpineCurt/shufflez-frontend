@@ -51,3 +51,22 @@ export const CELL_BORDER_STYLE = "1px solid black";
 /** RangeMatrix Cell color fill order from bottom to top
  */
 export const ACTION_ORDER: string[] = [FOLD, CALL, CHECK, RAISE, BET];
+
+/** BoardDisplay and Card */
+export const SHEET_WIDTH = 2171;
+export const SHEET_HEIGHT = 880;
+export const SHEET_CARD_WIDTH = 167;
+export const SHEET_CARD_HEIGHT = 220;
+export const SHEET_SUIT_IDX: { [suit: string]: number } = {
+  s: 0,
+  c: 1,
+  d: 2,
+  h: 3,
+};
+export const DEFAULT_CARD_WIDTH = 50;
+export const CARD_MARGIN = 5;
+export const SHOW_BACK = "back";
+export const BACK_SHEET_WIDTH = 612;
+export const BACK_SHEET_HEIGHT = 408;
+export const CARD_BACK_HEIGHT = 408;
+export const CARD_BACK_WIDTH = 285;
