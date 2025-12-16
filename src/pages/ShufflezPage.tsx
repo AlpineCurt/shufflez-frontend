@@ -3,6 +3,11 @@ import RangeMatrix from "../components/RangeMatrix/RangeMatrix";
 import RangeText from "../components/RangeText/RangeText";
 import { Grid, Box } from "@mui/material";
 import BoardDisplay from "../components/Board/BoardDisplay";
+import Flopzilla from "../components/Flopzilla/Flopzilla";
+import { BET, CHECK, FOLD } from "../const/const";
+import { AnyAction } from "../const/types";
+
+const actionsArr: AnyAction[] = [BET, CHECK, FOLD];
 
 interface Props {}
 
@@ -22,6 +27,7 @@ const ShufflezPage: React.FC<Props> = () => {
       </Grid>
       <Grid size={5}>
         <BoardDisplay />
+        <Flopzilla actionsArr={actionsArr} />
       </Grid>
     </Grid>
   );

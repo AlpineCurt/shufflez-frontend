@@ -102,7 +102,6 @@ const Cell: React.FC<Props> = memo(
       }
       act_counts_str += `, ${bg_color} ${last_pct}% 100%`;
       return `linear-gradient(to top${act_counts_str})`;
-      return "red";
     }, [
       selected,
       label,
